@@ -4,25 +4,72 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-//import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-//import androidx.compose.material.MaterialTheme
-//import androidx.compose.material.Surface
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-//import com.example.jetpacktutorial2.ui.theme.JetpackTutorial2Theme
+import com.example.jetpacktutorial2.ui.theme.JetpackTutorial2Theme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyComponent()
+            JetpackTutorial2Theme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.background
+                ) {
+
+               MyComplexLayout()
+             }
+             }
+        }
+    }
+}
+@Composable
+fun MyComplexLayout() {
+    Column(Modifier.fillMaxSize()) {
+        Box(
+            Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .background(Color.Cyan),contentAlignment = Alignment.Center) {
+            Text(text = "hola Cyan")
+
+        }
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .weight(1f)) {
+            Box(modifier = Modifier
+                .weight(1f)
+                .fillMaxHeight()
+                .background(Color.Red), contentAlignment = Alignment.Center){
+                Text(text = "hola rojo")
+            }
+            Box(modifier = Modifier
+                .weight(1f)
+                .fillMaxHeight()
+                .background(Color.Green), contentAlignment = Alignment.Center){
+                Text(text = "hola verde")
+                
+            }
+        }
+        Box(
+            Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .background(Color.Blue),contentAlignment = Alignment.BottomCenter){
+            Text(text = "hola Azul")
+
         }
     }
 }
@@ -56,9 +103,10 @@ fun MyTexts() {
 fun MyText(text: String) {
     Text(text)
 }
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun PreviewComponet(){
-    MyComponent()
+
+    MyComplexLayout()
 
 }
