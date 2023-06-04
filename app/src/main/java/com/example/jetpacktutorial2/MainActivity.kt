@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -45,6 +46,11 @@ fun MyComplexLayout() {
             Text(text = "hola Cyan")
 
         }
+//        Spacer(modifier = Modifier
+//            .width(0.dp)
+//            .height(30.dp))
+// *** se cambia por la siguiente funcion
+        MySpacer(size = 30)
         Row(
             Modifier
                 .fillMaxWidth()
@@ -63,6 +69,7 @@ fun MyComplexLayout() {
                 
             }
         }
+        MySpacer(size = 20)
         Box(
             Modifier
                 .fillMaxWidth()
@@ -74,6 +81,10 @@ fun MyComplexLayout() {
     }
 }
 
+@Composable
+fun MySpacer(size:Int){
+    Spacer(modifier = Modifier.height(size.dp))
+}
 @Composable
 fun MyComponent(){
     Row(modifier = Modifier.padding(8.dp)) {
