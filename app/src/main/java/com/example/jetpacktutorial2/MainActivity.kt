@@ -37,6 +37,8 @@ class MainActivity : ComponentActivity() {
                     Column() {
                         MyTextFieldAdVance()
                         MyTextFieldOutLined()
+                        var myTextVaria by remember { mutableStateOf("olga") }
+                        MyTextFieldHost(myTextVaria ){myTextVaria = it}
                     }
 
                 }
@@ -53,6 +55,7 @@ fun DefaultPreview() {
         //MyTextField()
         MyTextFieldAdVance()
         MyTextFieldOutLined()
+
     }
 }
 
@@ -94,6 +97,13 @@ fun MyTextField() {
 
 
 }
+
+    @Composable
+    fun MyTextFieldHost(name: String, onValueChange:(String)-> Unit)  {
+        TextField(value = name, onValueChange = {onValueChange(it) })
+
+
+    }
 
 @Composable
 fun MyText() {
